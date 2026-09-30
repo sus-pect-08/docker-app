@@ -7,6 +7,14 @@
         --no-cache-dir, flag che diabilita lo scaricamento di pacchetti su una cache locale (su Docker essi occupano solo spazio)
         -r requirements.txt, indicazione di che file leggere
     - COPY ./app . -> copia la directory di lavoro nell'immagine
-    - CMD defisnisce cosa far partire al'avvio, aggiungendo i parametri per definire [python interpreter, path dello script]
+    - CMD definisce cosa far partire al'avvio, aggiungendo i parametri per definire [python interpreter, path dello script]
 4. Sistemazione delle librerie aggiornate nei requirements
 5. Stesura docker-compose definizione del db, in riferimento dall'esercizio in classe
+    - services: definizione dei servzi (web, app, db, backend, ecc...), per lo stack
+    - db: definizione del database di utilizzo 
+        - image: immagine da scaricare/usare
+        - container_name: nome del container (in utilizzo per migliore identificazione dei vari container)
+        - environment: definisce credenziali di utilizzo + root password (obbligatoria)
+        - volumes: definizione del volume da uilizzare
+        - healthcheck: testing dello stato, raggiungibilità
+    -
