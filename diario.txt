@@ -1,4 +1,12 @@
 1. Scelta di come costruire il container per lo sviluppo al suo interno
 2. Generazione piccolo applicativo utilizzando Gemini
-3. Creazione di un Dockerfile per l'applicazione. (riferimento https://hub.docker.com/_/python)
+3. Creazione di un Dockerfile per l'applicazione (riferimento https://hub.docker.com/_/python)
+    - FROM -> pull immagine python versione 3
+    - COPY requirements.txt -> ccopia il contenuto del file requirements, (ibrerie per l'applicativo)
+    - RUN pip -> installa le librerie necessarie
+        --no-cache-dir, flag che diabilita lo scaricamento di pacchetti su una cache locale (su Docker essi occupano solo spazio)
+        -r requirements.txt, indicazione di che file leggere
+    - COPY ./app . -> copia la directory di lavoro nell'immagine
+    - CMD defisnisce cosa far partire al'avvio, aggiungendo i parametri per definire [python interpreter, path dello script]
 4. Sistemazione delle librerie aggiornate nei requirements
+5. Stesura docker-compose definizione del db, in riferimento dall'esercizio in classe

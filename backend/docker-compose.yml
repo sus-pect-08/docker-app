@@ -1,0 +1,16 @@
+services:
+  db:
+    image: mysql
+    container_name: application-db
+    environment:
+      MYSQL_ROOT_PASSWORD: segreta
+      MYSQL_USER: usr
+      MYSQL_PASSWORD: usr-tast
+      MYSQL_DATABASE: application
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-psegreta"]
+      interval: 5s
+      timeout: 5s
+      retries: 10  
