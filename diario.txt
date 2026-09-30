@@ -1,0 +1,4 @@
+1. Scelta di come costruire il container per lo sviluppo al suo interno
+2. Generazione piccolo applicativo utilizzando Gemini
+3. Creazione di un Dockerfile per l'applicazione. (riferimento https://hub.docker.com/_/python)
+4. Sistemazione delle librerie aggiornate nei requirements
