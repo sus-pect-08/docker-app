@@ -1,6 +1,7 @@
 1. Scelta di come costruire il container per lo sviluppo al suo interno
 2. Generazione piccolo applicativo utilizzando Gemini
-3. Creazione di un Dockerfile per l'applicazione (riferimento https://hub.docker.com/_/python)
+3. Definizione di variabili d'ambiente nel .env, per non avere credenziali hardcoded nella'applicazione
+4. Creazione di un Dockerfile per l'applicazione (riferimento https://hub.docker.com/_/python)
     - FROM -> pull immagine python versione 3
     - COPY requirements.txt -> ccopia il contenuto del file requirements, (ibrerie per l'applicativo)
     - RUN pip -> installa le librerie necessarie
@@ -8,13 +9,21 @@
         -r requirements.txt, indicazione di che file leggere
     - COPY ./app . -> copia la directory di lavoro nell'immagine
     - CMD definisce cosa far partire al'avvio, aggiungendo i parametri per definire [python interpreter, path dello script]
-4. Sistemazione delle librerie aggiornate nei requirements
-5. Stesura docker-compose definizione del db, in riferimento dall'esercizio in classe
+5. Sistemazione delle librerie aggiornate nei requirements
+6. Stesura docker-compose definizione del db, in riferimento dall'esercizio in classe
     - services: definizione dei servzi (web, app, db, backend, ecc...), per lo stack
     - db: definizione del database di utilizzo 
         - image: immagine da scaricare/usare
         - container_name: nome del container (in utilizzo per migliore identificazione dei vari container)
-        - environment: definisce credenziali di utilizzo + root password (obbligatoria)
+        - environment: definisce credenziali di utilizzo + root password
         - volumes: definizione del volume da uilizzare
         - healthcheck: testing dello stato, raggiungibilità
-    -
+    - web: definizione del servizio web 
+        - build: costruttore del container
+            - context: cartella/path dove trovare i file
+            - dockerfile: nome del docker file
+        - ports: definisce le porte interne ed esterne tramite port-forwarding
+        - environment: definisce il database in utilizzo e le sue credenziali
+            - DB_HOST indica il servizio db definito prima
+        - depends_on: dipende dalla condizione del servizio db, funziona solo se l'healtcheck risulta service_healthy
+    - volumes: definisce il volume di bisogno per il database, per mantenere i dati del database in caso di rimozione del container

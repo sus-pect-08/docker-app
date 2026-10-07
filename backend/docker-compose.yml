@@ -5,7 +5,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: segreta
       MYSQL_USER: usr
-      MYSQL_PASSWORD: usr-tast
+      MYSQL_PASSWORD: usr-test
       MYSQL_DATABASE: application
     volumes:
       - mysql-data:/var/lib/mysql
@@ -14,3 +14,21 @@ services:
       interval: 5s
       timeout: 5s
       retries: 10  
+  web:
+    build: 
+      context: . 
+      dockerfile: Dockerfile
+    container_name: application-web
+    ports:
+      - "5000:5000"
+    environment:
+      - DB_HOST=db
+      - DB_USER=usr
+      - DB_PASSWORD=usr-test
+      - DB_NAME=application
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  mysql-data:
