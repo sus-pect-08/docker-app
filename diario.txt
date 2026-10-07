@@ -1,3 +1,5 @@
+        DIARIO Progetto DOCKER
+
 1. Scelta di come costruire il container per lo sviluppo al suo interno
 2. Generazione piccolo applicativo utilizzando Gemini
 3. Definizione di variabili d'ambiente nel .env, per non avere credenziali hardcoded nella'applicazione
