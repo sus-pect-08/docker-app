@@ -4,11 +4,12 @@ services:
       container_name: app-phpmyadmin
       environment:
         PMA_HOST: application-db
+        MYSQL_ROOT_PASSWORD: segreta
       ports:
         - "7070:80" 
       networks:
-      - app_network  
+      - backend_default
 
 networks:
-  app_network:
+  backend_default:
     external: true 

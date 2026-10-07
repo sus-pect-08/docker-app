@@ -42,7 +42,7 @@ Correzione Dockerfile, errore nel COPY delle dipendenze, definizione cartella di
 
 8. Controllo che l'utente usr è stato creato, screenshot select (select user, host from mysql.user).
 
-9. Creazione di una rete bridge per collegare lo stack dell'applicazione a quello di phpmyadmin, con il comando docker network create app_network
+9. Creazione di una rete bridge per collegare lo stack dell'applicazione a quello di phpmyadmin, con la rete di default backend, nominata anche nel docker compose
 
 10. Modifica del docker-compose principale con l'aggiunta del network, definendo external true, esistendo già
 
@@ -50,3 +50,9 @@ Correzione Dockerfile, errore nel COPY delle dipendenze, definizione cartella di
     - definendo in esso l'immagine di phpmyadmin, il nome del container
     - con PMA_HOST definisce il container contenente il database di riferimento
     - e anche in questo viene definito il network di riferimento (app_network)
+
+12. Ricaricando entrabi gli stack 
+
+
+*nota sulle porte esposte, in questo progetto mi sono fermata a esporre le porte neccessarie, quelle che a mio parere hanno più senso esporre
+(le porte che mi servono per connetermi) invece le altre porte come quella del database risulta quella di default la 3306 (non cambierebbe molto specificarla)

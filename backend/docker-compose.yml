@@ -34,5 +34,4 @@ volumes:
   mysql-data:
 
 networks:
-  app_network:
-    external: true
+  backend_default:
