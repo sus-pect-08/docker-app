@@ -41,3 +41,12 @@ Correzione Dockerfile, errore nel COPY delle dipendenze, definizione cartella di
 7. Con il comando docker compose up, controllo che l'applicazione funzioni. Visualizzazione su portainer
 
 8. Controllo che l'utente usr è stato creato, screenshot select (select user, host from mysql.user).
+
+9. Creazione di una rete bridge per collegare lo stack dell'applicazione a quello di phpmyadmin, con il comando docker network create app_network
+
+10. Modifica del docker-compose principale con l'aggiunta del network, definendo external true, esistendo già
+
+11. Creazione di uno stack per phpmyadmin
+    - definendo in esso l'immagine di phpmyadmin, il nome del container
+    - con PMA_HOST definisce il container contenente il database di riferimento
+    - e anche in questo viene definito il network di riferimento (app_network)

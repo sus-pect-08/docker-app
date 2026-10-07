@@ -1,0 +1,14 @@
+services:
+  phpmyadmin:
+      image: phpmyadmin/phpmyadmin:latest
+      container_name: app-phpmyadmin
+      environment:
+        PMA_HOST: application-db
+      ports:
+        - "7070:80" 
+      networks:
+      - app_network  
+
+networks:
+  app_network:
+    external: true 
