@@ -53,7 +53,7 @@ Correzione Dockerfile, errore nel COPY delle dipendenze, definizione cartella di
     - con PMA_HOST definisce il container contenente il database di riferimento
     - e anche in questo viene definito il network di riferimento (app_network)
 
-12. Ricaricando entrabi gli stack 
+12. Ricaricando entrambi gli stack, si raggiungono tre container funzionanti.
 
 
 *nota sulle porte esposte, in questo progetto mi sono fermata a esporre le porte neccessarie, quelle che a mio parere hanno più senso esporre
