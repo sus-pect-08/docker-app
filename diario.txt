@@ -3,12 +3,16 @@
 3. Definizione di variabili d'ambiente nel .env, per non avere credenziali hardcoded nella'applicazione
 4. Creazione di un Dockerfile per l'applicazione (riferimento https://hub.docker.com/_/python)
     - FROM -> pull immagine python versione 3
-    - COPY requirements.txt -> ccopia il contenuto del file requirements, (ibrerie per l'applicativo)
-    - RUN pip -> installa le librerie necessarie
+    - WORKDIR -> definizione cartella di lavoro per il container (/app)
+    - COPY requirements.txt -> copia il contenuto del file requirements nel container (ibrerie per l'applicativo)
+    - RUN pip -> installa le librerie/dipendenze necessarie
         --no-cache-dir, flag che diabilita lo scaricamento di pacchetti su una cache locale (su Docker essi occupano solo spazio)
         -r requirements.txt, indicazione di che file leggere
-    - COPY ./app . -> copia la directory di lavoro nell'immagine
+    - COPY /app . -> copia la directory di lavoro nella cartella di lavoro (workdir definita prima) del container
     - CMD definisce cosa far partire al'avvio, aggiungendo i parametri per definire [python interpreter, path dello script]
+
+    Creato per generare il build dell'applicazione al difouri del docker compose, definendo l'immagine python installando flask e pymysql
+
 5. Sistemazione delle librerie aggiornate nei requirements
 6. Stesura docker-compose definizione del db, in riferimento dall'esercizio in classe
     - services: definizione dei servzi (web, app, db, backend, ecc...), per lo stack
@@ -27,3 +31,13 @@
             - DB_HOST indica il servizio db definito prima
         - depends_on: dipende dalla condizione del servizio db, funziona solo se l'healtcheck risulta service_healthy
     - volumes: definisce il volume di bisogno per il database, per mantenere i dati del database in caso di rimozione del container
+        -non definendo un external si
+
+    Definito per creare il container del database con le sue credenziali, definendo il container dell'applicativo connettendolo al database,
+    Inoltre per creare il voulume di conservaazione del database.    
+
+Correzione Dockerfile, errore nel COPY delle dipendenze, definizione cartella di lavoro nel container. 
+
+7. Con il comando docker compose up, controllo che l'applicazione funzioni. Visualizzazione su portainer
+
+8. Controllo che l'utente usr è stato creato, screenshot select (select user, host from mysql.user).
